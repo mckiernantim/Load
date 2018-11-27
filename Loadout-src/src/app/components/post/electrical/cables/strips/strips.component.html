@@ -1,0 +1,10 @@
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Describe your item"></textarea>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Pick this up by">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+      <button mat-raised-button (click)="post()">make post</button>

@@ -1,0 +1,29 @@
+<div class="dropdown">
+
+    <select class="form-control" id="material" (change)='selectSubCategory($event)'>
+     
+      <option>Select Material</option>
+      <option value=0>Source_4</option>
+      <option value=1>Fresnel</option>
+      <option value=2>Pars</option>
+      <option value=3>Strips</option>
+      <option value=4>Other</option>
+
+    </select>
+    <div *ngIf="this.displayedSubCategory==='Source_4'">
+   
+    </div>
+    <div *ngIf="this.displayedSubCategory==='Fresnel'">
+ 
+    </div>
+    <div *ngIf="this.displayedSubCategory==='Pars'">
+  
+    </div>
+    <div *ngIf="this.displayedSubCategory==='Strips'">
+      
+    </div>
+    <div *ngIf="this.displayedSubCategory==='Other'">
+      
+    </div>
+    
+  </div>

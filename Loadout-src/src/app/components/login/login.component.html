@@ -1,0 +1,14 @@
+<div class="register-container">
+    <form (submit) = "onLoginSubmit()">
+      <mat-form-field>
+        <mat-label>Enter Username</mat-label>
+        <input matInput placeholder="Input" [(ngModel)]="username" name="username">
+      </mat-form-field>
+    
+      <mat-form-field>
+          <mat-label>Enter Passsword</mat-label>
+          <input matInput placeholder="Input" [(ngModel)]="password" name="password">
+        </mat-form-field>
+        <button matbutton class="submit-btn" type="submit" value="Login" >Login</button>
+    </form>
+    </div>

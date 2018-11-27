@@ -1,0 +1,25 @@
+<div class="register-container">
+  <form (submit) = "onRegisterSubmit()">
+    <mat-form-field>
+      <mat-label>Enter Username</mat-label>
+      <input matInput placeholder="Input" [(ngModel)]="username" name="username">
+    </mat-form-field>
+  
+    <mat-form-field>
+        <mat-label>Enter Passsword</mat-label>
+        <input matInput placeholder="Input" [(ngModel)]="password" name="password">
+      </mat-form-field>
+      <mat-form-field>
+          <mat-label>Enter Email</mat-label>
+          <input matInput placeholder="Input" [(ngModel)]="email" name="email">
+        </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Choose Your Proffesion</mat-label>
+      <mat-select placeholder="Select" [(ngModel)]="user_title" name = "title" >
+        <mat-option *ngFor="let title of titles"  name = "titles" value= {{title.id}} >{{title.value}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button matbutton class="submit-btn" type="submit">Register</button>
+  </form>
+  </div>
