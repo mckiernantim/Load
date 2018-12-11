@@ -17,7 +17,7 @@
     <mat-form-field>
         <mat-label>Choose Your Proffesion</mat-label>
       <mat-select placeholder="Select" [(ngModel)]="user_title" name = "title" >
-        <mat-option *ngFor="let title of titles"  name = "titles" value= {{title.id}} >{{title.value}}</mat-option>
+        <mat-option *ngFor="let title of titles"  name = "titles" value= {{title.value}} >{{title.value}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button matbutton class="submit-btn" type="submit">Register</button>
