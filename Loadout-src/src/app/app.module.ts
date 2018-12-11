@@ -1,3 +1,4 @@
+import { TokenInterceptorService } from './token-interceptor.service';
 import { AuthService } from './components/auth.service';
 import { ValidateService } from './components/validate.service';
 import { CablesComponent } from './components/post/electrical/cables/cables.component';
@@ -27,6 +28,8 @@ import { CarpenrtryComponent } from './components/post/carpenrtry/carpenrtry.com
 import { ElectricalComponent } from './components/post/electrical/electrical.component';
 import { ToolsComponent } from './components/post/tools/tools.component';
 import { MaterialComponent } from './components/post/material/material.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 
 
@@ -74,10 +77,16 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot(),
+    HttpClientModule,
   
   
   ],
-  providers: [PostService, RegisterService, ValidateService, AuthService],
+  providers: [PostService, RegisterService, ValidateService, AuthService, HttpClientModule,
+  {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

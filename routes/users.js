@@ -14,8 +14,8 @@ router.post('/register', (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         username: req.body.username,
-        password: req.body.password
-
+        password: req.body.password,
+        title: req.body.title
     });
     User.addUser(newUser, (err, user)=>{
         if(err){
@@ -32,6 +32,7 @@ router.post('/register', (req, res, next) => {
 router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
+    console.log(username + " logged from authenticate call")
 
     User.getUserByUsername(username, (err, user) =>{
         if (err) throw err;
@@ -47,7 +48,7 @@ router.post('/authenticate', (req, res, next) => {
                  
                 res.json({
                     success: true,
-                    token: "bearer "+token,
+                    token: token,
                     user: {
                         id: user._id,
                         name: user.name,
@@ -66,7 +67,10 @@ router.post('/authenticate', (req, res, next) => {
 });
 
 
-router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
+router.get('/profile', 
+passport.authenticate('jwt', {session:false}), 
+(req, res, next) => {
+    console.log(req.user)
     res.json({user: req.user});
 });
 

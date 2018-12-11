@@ -27,9 +27,33 @@ const PostSchema = new Schema({
 
 });
 
-var PostModel = mongoose.model("PostModel", PostSchema)
+const  PostModel = module.exports = mongoose.model("PostModel", PostSchema);
     
 
     
+// Create Post
 
 
+
+// Update Post
+
+
+// Delete Post
+
+
+// Find posts
+
+
+// Get all posts
+
+
+// Find post by number
+
+
+// Find post by title
+
+// Find posts by user
+
+// Find post by date
+
+// Find post by 
