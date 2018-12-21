@@ -1,16 +1,19 @@
+import { Post } from './post.interface';
 import { MaterialComponent } from './material/material.component';
 import { ElectricalComponent } from './electrical/electrical.component';
 import { CarpenrtryComponent } from './carpenrtry/carpenrtry.component';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-
+ 
 
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  
+  styleUrls: ['./post.component.css'],
+  
 })
 export class PostComponent implements OnInit {
   rForm: FormGroup;
@@ -20,9 +23,8 @@ export class PostComponent implements OnInit {
   subCategory: String;
   item: String;
   deathDate: String;
+  claimedBy: String;
   specifics: {};
-
-
   selections = [{
 
     department: "Electrics",
@@ -134,52 +136,70 @@ export class PostComponent implements OnInit {
       }
     ]
   }
+
+  
 ]
 
   selected: String = "";
+   
 
 
 
-  constructor(private fb: FormBuilder) {
-    this.rForm = fb.group({
-      'title': [null, Validators.required],
-      'description': [null, Validators.compose([Validators.required, Validators.minLength(5)])],
-      'category': [null, Validators.required],
-      "subCategory": [null, Validators.required],
-      "item": [null, Validators.required],
-      'deathDate': [null, Validators.required],
-      'specifics': [null],
-      'validate': '',
+  constructor(private fb: FormBuilder, 
+    private postService: PostService) {
+    // this.rForm = fb.group({
+    //   'title': [null, Validators.required],
+    //   'description': [null, Validators.compose([Validators.required, Validators.minLength(5)])],
+    //   'category': [null, Validators.required],
+    //   "subCategory": [null, Validators.required],
+    //   "item": [null, Validators.required],
+    //   'deathDate': [null, Validators.required],
+    //   'specifics': [null],
+    //   'validate': '',
 
 
 
+    // })
+  }
+  getSubcategory(selectedSubCat: string){
+    if(selectedSubCat){
+    this.subCategory = selectedSubCat
+    console.log(this)
+  }
+
+  }
+  addPost(post: Post) {
+    // dummy data we will eventually get form NgForms
+     post = {
+      id:"",
+      category: this.category,
+      description: this.description,
+      subCategory: this.subCategory,
+      title: "dummy  title",
+
+}
+    console.log(post.description + " ************")
+    this.postService.createPost(post).subscribe(data=> {
+      console.log(data)
     })
-  }
-  addPost(post) {
-    this.title = post.title;
-    this.description = post.description;
-    this.category = post.catagory;
-    this.subCategory = post.subCategory;
-    this.item = post.item;
-    this.deathDate = post.deathDate;
-    this.specifics = post.specifics;
+    console.log("post working")
+}
 
-
-  }
 
 
   ngOnInit() {
+    
 
   }
   toggleCategory(event) {
 
     this.selected = (event.target.value);
-
-
+  
   }
   closeCategory() {
     this.selected = "";
   }
+ 
 }
 
 

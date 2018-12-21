@@ -1,6 +1,6 @@
 <div class="dropdown">
 
-    <select class="form-control" id="material" (change)='selectSubCategory($event)'>
+    <select class="form-control" id="material" (change)='selectSubCategory($event)' [(ngModel)] = "this.subCategory" name="subcategory" >
      
       <option>Select Material</option>
       <option value=0>Source_4</option>
@@ -11,6 +11,7 @@
 
     </select>
     <div *ngIf="this.displayedSubCategory==='Source_4'">
+      <app-source4></app-source4>
    
     </div>
     <div *ngIf="this.displayedSubCategory==='Fresnel'">

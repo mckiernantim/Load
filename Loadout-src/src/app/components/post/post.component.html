@@ -1,4 +1,4 @@
-<form class="form-horizontal">
+<form class="form-horizontal" >
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Create Post</h3>
@@ -9,7 +9,7 @@
       
      <div class="dropdown">
 
-                    <select class="form-control" id="carpentry"(change)="toggleCategory($event)">
+                    <select class="form-control" id="carpentry"(change)="toggleCategory($event)" [(ngModel)] = "this.category" name="category">
                         <option>carpentry</option>
                         <option>electrical</option>
                         <option>material</option>
@@ -21,7 +21,7 @@
                     </div>
                   
                     <div *ngIf="this.selected === 'electrical'">
-                        <app-electrical>
+                        <app-electrical (subCategoryOut) = "this.subCategory=$event">
                      
                         </app-electrical>
                     </div>
@@ -30,4 +30,6 @@
                     </div>
                 </div>
             </div>
+            <button mat-raised-button (click)="addPost()">make post</button>
 </form>
+<button> </button>

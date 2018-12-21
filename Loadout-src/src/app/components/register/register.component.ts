@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 
 
+
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { ValidateService } from './../validate.service';
 
@@ -19,17 +20,18 @@ import { Template } from '@angular/compiler/src/render3/r3_ast';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  name: String;
+  username: String;
+  email: String;
+  password: String;
+  user_title: String
   constructor(
     public form: RegisterService,
     private validateService: ValidateService,
     private flashMessage: FlashMessagesService,
     private router: Router,
     private authService: AuthService) { }
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-  user_title: string
+  
 
 
   titles = [
@@ -50,15 +52,14 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit() {
 
-    interface ReturnedData {
-      succes: boolean;
-    }
-    const user = {
+ 
+    let user = {
 
       password: this.password,
       username: this.username,
       email: this.email,
-      title: this.user_title
+      title: this.user_title, 
+      posts: []
 }
     console.log(user)
     if (!this.validateService.validateEmail(user.email)) {
