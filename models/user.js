@@ -1,36 +1,86 @@
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
 
 
-// Registration 
+
+
+// Post Schema
+
+const PostSchema = mongoose.Schema({
+    title: {
+        title: String,
+       },
+    description: {
+        description: String,
+       },
+    category: {
+        category: String,
+       },
+    subCategory: {
+        subCategory: String,
+       },
+    item: {
+        item: String,
+       },
+    deadthDate: {
+        deathDate: String,
+       },
+    specifics: {
+        specifics:String,
+        required: false
+    },
+    id: {
+        id: String,
+        required: false,
+    
+    }
+
+    });
+
+
 
 
 
 
 // user schema
 
+
 const UserSchema = mongoose.Schema({
     name: {
         type: String,
+        
+        
     },
     email: {
         type: String,
         required: true
-    },
+        
+           },
     username: {
         type: String,
-        required: true,
+        required: true
+        
+       
     },
     password:{
         type: String,
-        required: true,
+        required: true
+        
+       
     },
     title:{
        type: String,
-       required: true,
-    }
+       required: true
+       
+    },
+    posts:{
+        type: Array,
+        required: false
+        }
+    
     
 });
 
@@ -49,7 +99,7 @@ module.exports.getUserByUsername = function(username, callback){
 module.exports.addUser = function(newUser, callback){
     bcrypt.genSalt(10, (err, salt)=>{
         bcrypt.hash(newUser.password, salt, (err, hash)=> {
-            if(err) alert(err);
+            if(err) console.log(err);
             newUser.password = hash;
             newUser.save(callback);
         });
@@ -58,9 +108,13 @@ module.exports.addUser = function(newUser, callback){
 
 module.exports.comparePassword = function (candidatePassword, hash, callback){
     bcrypt.compare(candidatePassword, hash, (err, isMatch ) => {
-        if(err) throw err;
+        if(err) console.log(err);
         callback(null,isMatch)
         ;  
 })
- 
-};
+module.exports.createPost = function(id, post){
+     User.findByIdAndUpdate(id);
+
+}
+
+}

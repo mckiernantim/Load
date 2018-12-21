@@ -1,38 +1,43 @@
-import User from '/user'
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('../config/database');
 
 
-var Schema = mongoose.Schema;
 
-
-const PostSchema = new Schema({
-    title: {type: String,
-    required: true},
-    description: {type: String,
-    required: true},
-    category: {type: String,
-    required: true},
-    subCategory: {type: String,
-    required: true},
-    item: {type: String,
-    required: true},
-    deadthDate: {type: String,
-    required: true},
+const PostSchema = mongoose.Schema({
+    title: {
+        title: String,
+       },
+    description: {
+        description: String,
+       },
+    category: {
+        category: String,
+       },
+    subCategory: {
+        subCategory: String,
+       },
+    item: {
+        item: String,
+       },
+    deadthDate: {
+        deathDate: String,
+       },
     specifics: {
+        specifics:String,
+        required: false}
+    });
 
-    }
 
-});
 
-const  PostModel = module.exports = mongoose.model("PostModel", PostSchema);
+const Post = module.exports = mongoose.model('Post', PostSchema);
     
 
     
 // Create Post
+module.exports.createPost= function(newPost, callback){
 
+}
 
 
 // Update Post

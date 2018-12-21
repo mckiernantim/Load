@@ -32,7 +32,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
   
-  registerUser(user: User): Observable<User> {
+  registerUser(user: any): Observable<User> {
     let loginResponse;
     console.log(user + "passed into registerUser")
     let headers = new HttpHeaders().set("Content-Type", "application/json")
@@ -85,7 +85,7 @@ getProfile():Observable<any> {
     }
     
     loggedIn(){
-      return tokenNotExpired
+      return tokenNotExpired('id_token')
     }
   
   }

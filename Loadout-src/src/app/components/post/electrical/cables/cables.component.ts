@@ -1,5 +1,10 @@
+import { postOptions } from './../../postOptions';
+
+import { Source4Component } from './source4/source4.component';
 import { SelectSubcategoryService } from './../../../select-subcategory.service';
 import { Component, OnInit } from '@angular/core';
+
+
 
 
 @Component({
@@ -10,7 +15,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class CablesComponent implements OnInit {
   
-  displayedSubCategory: String = "";
+  displayedSubCategory: any = "";
 
   subCategories:any = [
    
@@ -21,9 +26,10 @@ export class CablesComponent implements OnInit {
     "Other"
   ];
   selectSubCategory(event, subCategories){
+    let index = postOptions[0].children[1].subcategories
     var userSelect = event.target.value 
-    console.log(userSelect + "%%%%%%%%%%%%")
-    this.displayedSubCategory = subCategories[userSelect];
+    console.log(userSelect + "%%%%%%%%%%%% CABLES ")
+    this.displayedSubCategory = this.subCategories[userSelect];
    
     console.log(this.displayedSubCategory + "$$$$$$$$$$$$$")
   }

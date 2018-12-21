@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Post } from './../post.interface';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+
+
+
 
 @Component({
   selector: 'app-electrical',
@@ -6,8 +10,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./electrical.component.css']
 })
 export class ElectricalComponent implements OnInit {
-
-  displayedSubCategory: String = "";
+ 
+  @Input() item: string;
+  @Output() public subCategoryOut = new EventEmitter<string>()
+  displayedSubCategory: any = "";
 
   subCategories:any = [
    
@@ -18,15 +24,22 @@ export class ElectricalComponent implements OnInit {
     "Misc"
   ];
   selectSubCategory(event, subCategories){
-    var userSelect = event.target.value 
-    console.log(userSelect + "%%%%%%%%%%%%")
-    this.displayedSubCategory = subCategories[userSelect];
+    var userChoice = event.target.value;
+    console.log(userChoice + " this is THE EVENT TARGET VALUE OF THE SELECTION") 
+    console.log(this.subCategories[userChoice] + "%%%%%%%%%%%%")
+
+    this.subCategoryOut.emit(this.subCategories[userChoice]) ;
    
-    console.log(this.displayedSubCategory + "$$$$$$$$$$$$$")
+    
   }
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit() {
+  }
+  selected(subCat: string): void {
+    this.displayedSubCategory.emit()
   }
 
 }

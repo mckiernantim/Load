@@ -12,8 +12,8 @@
     <a mat-button [routerLink]="['/post']">post</a>
     <a *ngIf= "authService.loggedIn()" mat-button [routerLink]="['/dashboard']">dashboard</a>
   
-    <a mat-button [routerLink]="['/profile']">profile</a>
-    <a mat-button [routerLink]="['/login']">login</a>
+    <a *ngIf= "authService.loggedIn()" mat-button [routerLink]="['/profile']">profile</a>
+    <a *ngIf= "!authService.loggedIn()"mat-button [routerLink]="['/login']">login</a>
   
     <a mat-button [routerLink]="['/register']">register</a>
     <a mat-button hre="#" (click) = "onLogoutClick()">Logout</a>

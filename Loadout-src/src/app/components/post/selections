@@ -1,0 +1,113 @@
+
+   const seslections = department: "Electrics",
+    children: [
+      {
+         title: "instruments",
+        subcategories: [
+
+          {
+            subTitle: "Source4",
+            specifics: "description"
+          },
+          {
+            subTitle: "Fresnel",
+            specifics: "description"
+
+          },
+          {
+            subTitle: "Pars",
+            specifics: "description"
+
+          },
+          {
+            subTitle: "Strips",
+            specifics: "description"
+
+          },
+          {
+            subTitle: "Other",
+            specifics: "description"
+
+          },
+        ]
+      },
+
+      {
+        title: "cables",
+        subcategories: [
+          {
+            subTitle: "edison",
+            specifics: ["specify length"]
+          },
+          {
+            subTitle: "stage pin",
+            specifics: ["specify length"]
+          },
+
+          {
+            subTitle: "dmx",
+            specifics: ["specify length, specify pin"]
+          },
+
+          {
+            subTitle: "other",
+            specifics: ["length"]
+          },
+
+        ]
+      },
+      {
+        title: "hardware",
+        subcategories: [
+          {
+            subTitle: "Cheesegoroughs",
+            specifics: [{
+              options: [{
+                type: "swivel",
+                materials: ["steel", "aluminum"]
+              },
+              {
+                type: "Rigid",
+                materials: ["steel", "aluminum"]
+              },
+              {
+                type: "HalfBoro",
+                materials: ["steel", "aluminum"]
+              },
+              ],
+            }]
+
+          },
+          {
+            subTitle: 'schedule40',
+            specifics: ["specify length"]
+          },
+          {
+            subTitle: "boomBase",
+            specifics: []
+          },
+          {
+            subTitle: "sideArms",
+            specifics: []
+          },
+          {
+            subTitle: "cClamps",
+            specifics: []
+          },
+          {
+            subTitle: "safetyCables",
+            specifics: []
+          },
+          {
+            subTitle: "other",
+            specifics: []
+          },
+
+        ]
+
+      }
+    ]
+  }
+]
+
+  selected: String = "";
