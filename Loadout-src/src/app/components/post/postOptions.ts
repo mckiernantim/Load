@@ -1,6 +1,6 @@
 export const postOptions =  [{
 
-        department: "Electrics",
+        department: "electrical",
         children: [
           {
              title: "instruments",

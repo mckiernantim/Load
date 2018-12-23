@@ -1,35 +1,45 @@
-<form class="form-horizontal" >
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">Create Post</h3>
-        </div>
+<form class="form-horizontal">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Post</h3>
     </div>
-    <div class="panel-body">
-      
-      
-     <div class="dropdown">
+  </div>
+  <div class="panel-body">
+    <div class="dropdown">
+      <select class="form-control" id="category" (change)="toggleCategory($event)" [(ngModel)]="this.category" name="children">
+        <option>carpentry</option>
+        <option>electrical</option>
+        <option>material</option>
+        <option>etc</option>
+      </select>
+    </div>
 
-                    <select class="form-control" id="carpentry"(change)="toggleCategory($event)" [(ngModel)] = "this.category" name="category">
-                        <option>carpentry</option>
-                        <option>electrical</option>
-                        <option>material</option>
-                        <option>etc</option>
-                    </select>
-                    <div *ngIf="this.selected === 'carpentry'">
-                            <app-carpenrtry>CARPENTRY IS THE CATEGORY</app-carpenrtry>
-                            <button (click)="closeCategory()">Reset Category</button>
-                    </div>
-                  
-                    <div *ngIf="this.selected === 'electrical'">
-                        <app-electrical (subCategoryOut) = "this.subCategory=$event">
-                     
-                        </app-electrical>
-                    </div>
-                    <div *ngIf="this.selected === 'material'">
-                    <app-material></app-material>
-                    </div>
-                </div>
-            </div>
-            <button mat-raised-button (click)="addPost()">make post</button>
-</form>
-<button> </button>
+    <div *ngIf="this.currentData.firstSelection === 'electrical'" class="dropdown">
+      <select class="form-control" id="category" (change)="toggleCategory($event)" [(ngModel)]="this.subCategory" name="item">
+        <option>Source_4</option>
+        <option>Fresnel</option>
+        <option>Pars</option>
+        <option>Strips</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div *ngIf="this.currentData.secondSelection" class="dropdown">
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Title your post" [(ngModel)]="this.title" name="title"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Describe your item" [(ngModel)]="this.description" name="description"></textarea>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Enter the date this needs to get picekd up" [(ngModel)]="this.deathDate"
+          name="deathDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Tag your post?" [(ngModel)]="this.specifics" name="specifics"></textarea>
+      </mat-form-field>
+      <button mat-raised-button (click)="addPost()">Publish it.</button>
+
+    </div>
+  </div>

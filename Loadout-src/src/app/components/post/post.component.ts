@@ -1,3 +1,4 @@
+import { postOptions } from './postOptions';
 import { Post } from './post.interface';
 import { MaterialComponent } from './material/material.component';
 import { ElectricalComponent } from './electrical/electrical.component';
@@ -5,15 +6,16 @@ import { CarpenrtryComponent } from './carpenrtry/carpenrtry.component';
 import { PostService } from './../post.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
- 
+
+
 
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  
+
   styleUrls: ['./post.component.css'],
-  
+
 })
 export class PostComponent implements OnInit {
   rForm: FormGroup;
@@ -22,130 +24,24 @@ export class PostComponent implements OnInit {
   category: String;
   subCategory: String;
   item: String;
-  deathDate: String;
+  deathDate: Date;
   claimedBy: String;
-  specifics: {};
-  selections = [{
+  specifics: String;
+  selections = postOptions;
+  currentData: any = {
+    firstSelection: null,
+    secondSelection: null,
 
-    department: "Electrics",
-    children: [
-      {
-         title: "instruments",
-        subcategories: [
-
-          {
-            subTitle: "Source4",
-            specifics: "description"
-          },
-          {
-            subTitle: "Fresnel",
-            specifics: "description"
-
-          },
-          {
-            subTitle: "Pars",
-            specifics: "description"
-
-          },
-          {
-            subTitle: "Strips",
-            specifics: "description"
-
-          },
-          {
-            subTitle: "Other",
-            specifics: "description"
-
-          },
-        ]
-      },
-
-      {
-        title: "cables",
-        subcategories: [
-          {
-            subTitle: "edison",
-            specifics: ["specify length"]
-          },
-          {
-            subTitle: "stage pin",
-            specifics: ["specify length"]
-          },
-
-          {
-            subTitle: "dmx",
-            specifics: ["specify length, specify pin"]
-          },
-
-          {
-            subTitle: "other",
-            specifics: ["length"]
-          },
-
-        ]
-      },
-      {
-        title: "hardware",
-        subcategories: [
-          {
-            subTitle: "Cheesegoroughs",
-            specifics: [{
-              options: [{
-                type: "swivel",
-                materials: ["steel", "aluminum"]
-              },
-              {
-                type: "Rigid",
-                materials: ["steel", "aluminum"]
-              },
-              {
-                type: "HalfBoro",
-                materials: ["steel", "aluminum"]
-              },
-              ],
-            }]
-
-          },
-          {
-            subTitle: 'schedule40',
-            specifics: ["specify length"]
-          },
-          {
-            subTitle: "boomBase",
-            specifics: []
-          },
-          {
-            subTitle: "sideArms",
-            specifics: []
-          },
-          {
-            subTitle: "cClamps",
-            specifics: []
-          },
-          {
-            subTitle: "safetyCables",
-            specifics: []
-          },
-          {
-            subTitle: "other",
-            specifics: []
-          },
-
-        ]
-
-      }
-    ]
   }
-
-  
-]
-
-  selected: String = "";
-   
+  currentOptions: any[]
+  showSecond: boolean = null
+  showThird:boolean= false;
 
 
 
-  constructor(private fb: FormBuilder, 
+
+
+  constructor(private fb: FormBuilder,
     private postService: PostService) {
     // this.rForm = fb.group({
     //   'title': [null, Validators.required],
@@ -161,46 +57,88 @@ export class PostComponent implements OnInit {
 
     // })
   }
-  getSubcategory(selectedSubCat: string){
-    if(selectedSubCat){
-    this.subCategory = selectedSubCat
-    console.log(this)
-  }
+  getSubcategory(selectedSubCat: string) {
+    if (selectedSubCat) {
+      this.subCategory = selectedSubCat
+      console.log(this)
+    }
 
   }
   addPost(post: Post) {
     // dummy data we will eventually get form NgForms
-     post = {
-      id:"",
+    post = {
+      id: localStorage.getItem("user"["id"]),
       category: this.category,
       description: this.description,
       subCategory: this.subCategory,
-      title: "dummy  title",
+      item:this.item,
+      title: this.title,
+      deathDate: this.deathDate.toString(),
+      specifics: this.specifics
+      
 
-}
+
+
+    }
     console.log(post.description + " ************")
-    this.postService.createPost(post).subscribe(data=> {
+    this.postService.createPost(post).subscribe(data => {
       console.log(data)
     })
     console.log("post working")
-}
+    this.showSecond = false;
+    this.showThird = false;
+  }
 
 
 
   ngOnInit() {
-    
+
 
   }
   toggleCategory(event) {
+    if(!this.currentData.firstSelection){
+    this.currentData.firstSelection = event.target.value}
+    else{
+      if(!this.currentData.secondSelection){this.currentData.secondSelection = event.target.value}
+      
+    }
+   
+    // let selectedStr = (event.target.value);
+    // console.log(event.target.getAttribute('name'))
+    // this.currentName = event.target.getAttribute('name')
+    // if(!this.showSecond || this.showSecond && !this.showThird){
+    // this.currentOptions = this.displaySubcategory(selectedStr, this.currentName);}
 
-    this.selected = (event.target.value);
-  
-  }
-  closeCategory() {
-    this.selected = "";
-  }
- 
+
+    // console.log(this.currentOptions + " <------- your current options");
 }
+ 
+  displaySubcategory(str: any, dataToDisplay: String) {
+    let childData = {
+      index: 0,
+      options: [],
+    };
+    for (let i = 0; i <= this.selections.length; i++) {
+      console.log(str)
+      console.log(this.selections[i].department)
+
+      if (str === this.selections[i].department) {
+        
+        childData.index = i;
+        for (let j = 0; j < this.selections[i].children.length; j++) {
+          childData.options.push(this.selections[i][`${dataToDisplay}`][j].title)
+          console.log(childData.options)
+         if(!this.showSecond)
+           {this.showSecond = true;}
+        }
+      }
+      return childData.options;
+    }
+  }
+
+
+}
+
 
 
 
