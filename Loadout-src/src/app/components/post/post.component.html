@@ -6,40 +6,64 @@
   </div>
   <div class="panel-body">
     <div class="dropdown">
-      <select class="form-control" id="category" (change)="toggleCategory($event)" [(ngModel)]="this.category" name="children">
-        <option>carpentry</option>
+      <select class="form-control" id="children" (change)="toggleCategory($event)" [(ngModel)]="this.category"  name="children">
         <option>electrical</option>
+        <option>scenery</option>
         <option>material</option>
         <option>etc</option>
       </select>
     </div>
-
-    <div *ngIf="this.currentData.firstSelection === 'electrical'" class="dropdown">
-      <select class="form-control" id="category" (change)="toggleCategory($event)" [(ngModel)]="this.subCategory" name="item">
-        <option>Source_4</option>
-        <option>Fresnel</option>
-        <option>Pars</option>
-        <option>Strips</option>
-        <option>Other</option>
-      </select>
+    
+    <div *ngIf="this.showSecond">
+      <div class="dropdown">
+        <select class="form-control" id="subcategories" (change)="toggleCategory($event)" [(ngModel)]="this.subCategory" name="whatever">
+          <ng-container >
+            <option *ngFor="let option of this.currentOptions">{{option}}</option>
+          </ng-container>
+        </select>
+      </div>
     </div>
-    <div *ngIf="this.currentData.secondSelection" class="dropdown">
-      <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Title your post" [(ngModel)]="this.title" name="title"></textarea>
+
+    <div *ngIf="this.showThird">
+        <div class="dropdown">
+          <select class="form-control" id="specifics"  (change)="toggleCategory($event)" [(ngModel)]="this.item" name="this.thirdOptions">
+            <ng-container>
+              <option *ngFor="let option of this.thirdOptions">{{option}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+      
+    
+    <div *ngIf="this.showFourth" class="dropdown">
+        <select class="form-control" id="subTitle"   name="this.fourthOptions">
+            <ng-container>
+              <option *ngFor="let option of this.fourthOptions">{{option}}</option>
+            </ng-container>
+          </select>
+      
+          <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Title your post" name="title"></textarea>
       </mat-form-field>
+      
       <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Describe your item" [(ngModel)]="this.description" name="description"></textarea>
       </mat-form-field>
+      
       <mat-form-field class="example-full-width">
         <input matInput [matDatepicker]="picker" placeholder="Enter the date this needs to get picekd up" [(ngModel)]="this.deathDate"
           name="deathDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
+      
       <mat-form-field class="example-full-width">
         <textarea matInput placeholder="Tag your post?" [(ngModel)]="this.specifics" name="specifics"></textarea>
       </mat-form-field>
       <button mat-raised-button (click)="addPost()">Publish it.</button>
-
     </div>
+   
+      
+        
+   
   </div>
