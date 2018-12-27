@@ -19,11 +19,8 @@ export class PostService {
       // grab user info 
       console.log(localStorage.getItem("user"))
       let token = JSON.parse(localStorage.getItem("user"));
-      console.log(token + "     %%%%%%%%%%%%%%%%%%%%%%%")
-      
       post.id = token.id;
       
-      console.log(post.id + '$$$$$$$$$$')
       console.log(post)
       
       return this.http.post('http://localhost:3000/users/post', post)

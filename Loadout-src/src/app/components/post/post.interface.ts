@@ -5,8 +5,9 @@ export interface Post {
         category?: String,
         subCategory?: String,
         item?: String,
-        deathdate?: String,
+        deathDate?: String,
         specifics?: String,
         id?: String,
         claimedBy?: String, 
+        
 }

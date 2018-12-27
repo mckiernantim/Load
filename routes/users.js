@@ -106,7 +106,7 @@ router.post('/post', (req, res, next) => {
         category: req.body.category,
         subCategory: req.body.subCategory,
         item: req.body.item,
-        deathdate: req.body.deathdate,
+        deathDate: req.body.deathDate,
         specifics: req.body.specifics,
 
     };
