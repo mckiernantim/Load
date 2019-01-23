@@ -5,6 +5,12 @@ const config = require('../config/database');
 
 
 const PostSchema = mongoose.Schema({
+    username:{
+        username: String
+    },
+    email: {
+        email: String,
+    },
     title: {
         title: String,
        },

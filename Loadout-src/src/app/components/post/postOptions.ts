@@ -120,7 +120,7 @@ export const postOptions = [
           title: "lumber",
           options: [
             {
-              itemTile: "sheet",
+              itemTitle: "sheet",
               subOptions: [{
                 optionTitle: "masonite",
                 optionSpecifics: ["enter", "2x4 specifics", "other specifics"]
@@ -147,32 +147,162 @@ export const postOptions = [
         {
           title: "hardware",
           options: [{
-            itemTile: "",
+            itemTitle: "pipe ",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
+              optionTitle: "pipe/drape",
+              optionSpecifics: ["enter", "length"]
+            },
+            {
+              optionTitle: "schedule 40",
+              optionSpecifics: ["enter", "length"]
+            },
+            {
+              optionTitle: "other",
+              optionSpecifics: ["enter", "length"]
+            }
+            ]
+          },
+          {
+            itemTitle: "track",
+            subOptions: [
+              {
+                optionTitle: "I",
+                optionSpecifics: ["enter", "length"]
+              },
+              {
+                optionTitle: "U",
+                optionSpecifics: ["enter", "length"]
+              },
+              {
+                optionTitle: "carriers",
+                optionSpecifics: ["enter", "length"]
+              }]
+          },
+          {
+            itemTitle: "casters ",
+            subOptions: [{
+              optionTitle: "casters",
+              optionSpecifics: ["enter", "length", "weight load"]
             }]
-          }]
+          },
+          {
+            itemTitle: "fasteners ",
+            subOptions: [{
+              optionTitle: "nails",
+              optionSpecifics: ["enter", "ammount", "size"]
+            },
+            {
+              optionTitle: "screws",
+              optionSpecifics: ["enter", "ammount", "size"]
+            }]
+          },
+          {
+            itemTitle: "brackets",
+            subOptions: [{
+              optionTitle: "brackets",
+              optionSpecifics: ["enter", "size"]
+            }]
+          },
+          {
+            itemTitle: "door",
+            subOptions: [{
+              optionTitle: "nobs",
+              optionSpecifics: ["enter", "size"]
+            },
+            {
+              optionTitle: "other",
+              optionSpecifics: ["enter", "size"]
+            }]
+          },
+          {
+            itemTitle: "hinges",
+            subOptions: [{
+              optionTitle: "hinges",
+              optionSpecifics: ["enter", "size"]
+            }]
+          },
+          {
+            itemTitle: "other",
+            subOptions: [{
+              optionTitle: "other",
+              optionSpecifics: ["enter", "relevant info"]
+            }]
+          }
+          ]
         },
         {
           title: "soft goods",
           options: [{
-            itemTile: "",
+            itemTitle: "duvetyn",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
+              optionTitle: "duvetyn",
+              optionSpecifics: ["enter", "yardage"]
+            },
+            {
+              subOptions: [{
+                optionTitle: "muslin",
+                optionSpecifics: ["enter", "yardage"]
+              }]
+            },
+            {
+              subOptions: [{
+                optionTitle: "other",
+                optionSpecifics: ["enter", "yardage"]
+              },
+              ]
             }]
           }]
         },
+
         {
           title: "paint",
           options: [{
-            itemTile: "",
+            itemTitle: "color",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
+              optionTitle: "eggshell",
+              optionSpecifics: ["enter", "gallons"]
+            },
+            {
+              optionTitle: "semi gloss",
+              optionSpecifics: ["enter", "gallons"]
+            },
+            {
+              optionTitle: "flat",
+              optionSpecifics: ["enter", "gallons"]
             }]
-          }]
+          },
+          {
+            itemTitle: "primer",
+            subOptions: [
+              {
+                optionTitle: "primer",
+                optionSpecifics: ["enter", "gallons"]
+              },
+            ]
+          },
+          {
+            itemTitle: "joint compound",
+            subOptions: [
+              {
+                optionTitle: "joint compound",
+                optionSpecifics: ["enter", "gallons"]
+              },
+            ]
+          },
+          {
+            itemTitle: "brushes",
+            subOptions: [
+              {
+                optionTitle: "used / washed",
+                optionSpecifics: ["enter", "ammount"]
+              },
+              {
+                optionTitle: "new",
+                optionSpecifics: ["enter", "ammount"]
+              }
+            ]
+          },
+          ]
         }]
       },
 
@@ -182,51 +312,127 @@ export const postOptions = [
         subcategories: [{
           title: 'flats (1 by fram, 1/4" luan)',
           options: [{
-            itemTile: "",
+            itemTitle: "4x8",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
-            }]
-          }]
+              optionTitle: "painted",
+              optionSpecifics: ["enter", "number"]
+
+            },
+            {
+              optionTitle: "unpainted",
+              optionSpecifics: ["enter", "number"]
+
+            }
+            ]
+          },
+          ]
         },
         {
           title: "doors",
           options: [{
-            itemTile: "",
+            itemTitle: "interior",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
+              optionTitle: "in frame",
+              optionSpecifics: ["enter", "size"]
+            },
+            {
+              optionTitle: "stand alone",
+              optionSpecifics: ["enter", "size"]
+            }]
+          },
+          {
+            itemTitle: "exterior",
+            subOptions: [{
+              optionTitle: "in frame",
+              optionSpecifics: ["enter", "size"]
+            },
+            {
+              optionTitle: "stand alone",
+              optionSpecifics: ["enter", "size"]
             }]
           }]
         },
         {
           title: "decking/flooring",
           options: [{
-            itemTile: "",
+            itemTitle: "wooden platforms",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
+              optionTitle: "4x8",
+              optionSpecifics: ["enter", "height"]
+            },
+            {
+              optionTitle: "other",
+              optionSpecifics: ["enter", "height"]
+
+            }]
+          },
+          {
+            itemTitle: "steel deck",
+            subOptions: [{
+              optionTitle: "4x8",
+              optionSpecifics: ["enter", "height"]
+            },
+            {
+              optionTitle: "other",
+              optionSpecifics: ["enter", "height"]
+            }]
+          },
+          {
+            itemTitle: "marly",
+            subOptions: [{
+              optionTitle: "marly",
+              optionSpecifics: ["enter", "color"]
+            }]
+          },
+          {
+            itemTitle: "carpet",
+            subOptions: [{
+              optionTitle: "color",
+              optionSpecifics: ["enter", "color", "pile"]
+            }]
+          },
+          {
+            itemTitle: "other",
+            subOptions: [{
+              optionTitle: "other",
+              optionSpecifics: ["enter", "specifics"]
             }]
           }]
         },
-        {
-          title: "stairs",
-          options: [{
-            itemTile: "",
-            subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
-            }]
-          }]
-        },
+
         {
           title: "soft goods",
           options: [{
-            itemTile: "",
+            itemTitle: "cycs",
             subOptions: [{
-              optionTitle: "",
-              optionSpecifics: []
-            }]
+              optionTitle: "cycs",
+              optionSpecifics: ["enter", "dimensions", "fabric type", "color", "fullness", "webbing?", "flame cert?"]
+            },
+            ]
+          },
+          {
+            itemTitle: "legs",
+            subOptions: [{
+              optionTitle: "legs",
+              optionSpecifics: ["enter", "dimensions", "fabric type", "color", "fullness", "webbing?", "flame cert?"]
+            },
+            ]
+          },
+          {
+            itemTitle: "border",
+            subOptions: [{
+              optionTitle: "border",
+              optionSpecifics: ["enter", "dimensions", "fabric type", "color", "fullness", "webbing?", "flame cert?"]
+            },
+            ]
+          },
+          {
+            itemTitle: "backdrops",
+            subOptions: [{
+              optionTitle: "backdrops",
+              optionSpecifics: ["enter", "dimensions", "fabric type", "color", "fullness", "webbing?", "flame cert?"]
+            },
+            ]
           }]
         }
 

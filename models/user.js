@@ -10,6 +10,13 @@ const config = require('../config/database');
 // Post Schema
 
 const PostSchema = mongoose.Schema({
+    username: {
+        username: String
+    },
+    email: {
+        email: String
+    },
+
     title: {
         title: String,
        },
@@ -35,7 +42,6 @@ const PostSchema = mongoose.Schema({
     id: {
         id: String,
         required: false,
-    
     }
 
     });
@@ -85,6 +91,7 @@ const UserSchema = mongoose.Schema({
 });
 
 const User = module.exports = mongoose.model('User', UserSchema);
+
 
 module.exports.getUserById = function(id, callback){
     User.findById(id, callback)

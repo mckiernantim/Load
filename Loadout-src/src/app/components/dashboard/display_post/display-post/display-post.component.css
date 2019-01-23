@@ -1,0 +1,7 @@
+.postCard{
+    display: inline-block;
+    width: 25%;
+    margin: 5px;
+    vertical-align: top;
+    cursor: pointer
+};

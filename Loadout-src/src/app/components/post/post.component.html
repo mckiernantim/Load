@@ -26,7 +26,7 @@
 
     <div *ngIf="this.showThird">
         <div class="dropdown">
-          <select class="form-control" id="specifics"  (change)="toggleCategory($event)" [(ngModel)]="this.item" name="this.thirdOptions">
+          <select class="form-control" id="options"  (change)="toggleCategory($event)" [(ngModel)]="this.item" name="this.thirdOptions">
             <ng-container>
               <option *ngFor="let option of this.thirdOptions">{{option}}</option>
             </ng-container>
@@ -36,14 +36,22 @@
       
     
     <div *ngIf="this.showFourth" class="dropdown">
-        <select class="form-control" id="subTitle"   name="this.fourthOptions">
+        <select class="form-control" id="subOptions"   name="this.subItem" (change)="toggleCategory($event)" >
             <ng-container>
               <option *ngFor="let option of this.fourthOptions">{{option}}</option>
             </ng-container>
           </select>
+        </div>
+       
+        <div *ngIf="this.showFifth" class="dropdown">
+            <select class="form-control" id="optionSpecifics"   name="this.fifthOptions">
+                <ng-container>
+                  <option *ngFor="let option of this.fifthOptions">{{option}}</option>
+                </ng-container>
+              </select>
       
           <mat-form-field class="example-full-width">
-        <textarea matInput placeholder="Title your post" name="title"></textarea>
+        <textarea matInput placeholder="Title your post" name="title" [(ngModel)]="this.title"></textarea>
       </mat-form-field>
       
       <mat-form-field class="example-full-width">
@@ -62,8 +70,4 @@
       </mat-form-field>
       <button mat-raised-button (click)="addPost()">Publish it.</button>
     </div>
-   
-      
-        
-   
   </div>

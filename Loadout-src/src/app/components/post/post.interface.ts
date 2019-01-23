@@ -9,5 +9,8 @@ export interface Post {
         specifics?: String,
         id?: String,
         claimedBy?: String, 
+        location?: String,
+        username?: String,
+        email?: String
         
 }

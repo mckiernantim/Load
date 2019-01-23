@@ -30,6 +30,9 @@ import { ToolsComponent } from './components/post/tools/tools.component';
 import { MaterialComponent } from './components/post/material/material.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { DisplayPostComponent } from './components/dashboard/display_post/display-post/display-post.component';
+import { MatTableModule } from '@angular/material';
+
 
 
 
@@ -63,7 +66,9 @@ const appRoutes: Routes = [
     ToolsComponent,
     MaterialComponent,
     CablesComponent,
-    Source4Component
+    Source4Component,
+    
+    DisplayPostComponent
     
 
    
@@ -79,6 +84,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule.forRoot(),
     HttpClientModule,
+    MatTableModule
   
   
   ],

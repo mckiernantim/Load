@@ -24,6 +24,7 @@ export class PostComponent implements OnInit {
   category: String;
   subCategory: String;
   item: String;
+  subitem: String;
   deathDate: Date;
   claimedBy: String;
   specifics: String;
@@ -31,14 +32,17 @@ export class PostComponent implements OnInit {
    currentOptions: String[]
   thirdOptions: String[]
   fourthOptions: String[]
+  fifthOptions:String[]
   showSecond: boolean = null
   showThird:boolean= false
   showFourth:boolean = false
+  showFifth: boolean = false
   currentDataName:String
   counter:number = 0
   subcatIndex: number = 0
   thirdCatIndex: number =0
   fourthCatIndex:number = 0
+  fifthCatIndex:number = 0
 
 
 
@@ -56,9 +60,10 @@ export class PostComponent implements OnInit {
 
   }
   addPost(post: Post) {
-    // dummy data we will eventually get form NgForms
+   
     post = {
-      id: localStorage.getItem("user"["id"]),
+     username:null,
+     email:null,
       category: this.category,
       description: this.description,
       subCategory: this.subCategory,
@@ -66,6 +71,7 @@ export class PostComponent implements OnInit {
       title: this.title,
       deathDate: this.deathDate.toString(),
       specifics: this.specifics
+      
      }
     console.log(post)
     this.postService.createPost(post).subscribe(data => {
@@ -74,6 +80,8 @@ export class PostComponent implements OnInit {
     console.log("post working")
     this.showSecond = false;
     this.showThird = false;
+    this.showFourth = false;
+    this.showFifth = false
   }
 
 
@@ -109,7 +117,7 @@ export class PostComponent implements OnInit {
       let returnedData = this.displayThirdCategory(selectedTitle, this.currentDataName, this.subcatIndex);
      
       this.thirdOptions = returnedData.options;
-      console.log(this.thirdOptions + " ppppppppppppp")
+      console.log(this.thirdOptions + "  THID OPTIONS WORKING")
       this.thirdCatIndex = returnedData.index;
      
       
@@ -119,12 +127,17 @@ export class PostComponent implements OnInit {
       
       let returnedData = this.displayFourthCategory(selectedTitle, this.currentDataName, this.thirdCatIndex);
       this.fourthOptions = returnedData.options;
-      console.log(this.fourthOptions)
+      console.log(this.fourthOptions + " %%%%%%%%%%%%%%%%%%%%%%%")
       
       this.fourthCatIndex = returnedData.index;
       
     }
     if (this.counter === 4 ) {
+      let returnedData = this.displayFifthCategory(selectedTitle, this.currentDataName, this.fourthCatIndex);
+      this.fifthOptions = returnedData.options;
+      console.log(this.fifthOptions + "fifth firing!")
+      
+      this.fifthCatIndex = returnedData.index;
       
     }
  
@@ -143,8 +156,7 @@ export class PostComponent implements OnInit {
       options: [],
     };
     for (let i = 0; i < this.selections.length; i++) {
-      console.log(this.selections.length)
-      console.log(str, this.selections[i].department  +  "  ********")
+      
       if (str === this.selections[i].department) {
          childData.index = i;
         for (let j = 0; j < this.selections[i].children.length; j++) {
@@ -189,21 +201,45 @@ export class PostComponent implements OnInit {
       options: [],
     };
       
-    for (let i = 0; i < this.selections[this.subcatIndex].children[this.thirdCatIndex].subDepartment.length; i++) {
+    for (let i = 0; i < this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories.length; i++) {
      
-     
-      if (str === this.selections[this.subcatIndex].children[i].subDepartment) {
+     let x = this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[i]['title'];
+     console.log(x)
+      if (str === x) {
        
          childData.index = i;
-        for (let j = 0; j < this.selections[this.subcatIndex].children[this.thirdCatIndex].subDepartment.length; j++) {
-          childData.options.push(this.selections[this.subcatIndex].children[this.thirdCatIndex].subDepartment[i][`${dataToDisplay}`][j].itle)
-         
+        for (let j = 0; j < this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[i]['options'].length; j++) {
+          
+            childData.options.push(this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[i][`${dataToDisplay}`][j].itemTitle)
+          
           
         }
       }
     }
+    console.log(childData.options)
       return childData;
    }
+
+  displayFifthCategory(str: any, dataToDisplay: String, index: number) {
+    let childData = {
+      index: 0,
+      options: [],
+    };
+    let x = this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[this.fourthCatIndex]['options'].length;
+    console.log(x + " this is the index")
+    for (let i = 0; i < x; i++) {
+      let y  = this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[this.fourthCatIndex]['options'][i].itemTitle
+      childData.index = i;
+      if (str === y )
+        for (let j = 0; j < this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[this.fourthCatIndex]['options'].length; j++) {
+          console.log(this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[this.fourthCatIndex]['options'][i][`${dataToDisplay}`][j].optionTitle)
+          childData.options.push(this.selections[this.subcatIndex].children[this.thirdCatIndex].subcategories[this.fourthCatIndex]['options'][i][`${dataToDisplay}`][j].optionTitle)
+          console.log(childData.options + "here its working!!!1")
+        }
+       }
+    return childData;
+  }
+
 
  
   
@@ -219,6 +255,7 @@ export class PostComponent implements OnInit {
     if(num ===2   ) {this.showThird = true }
     console.log (this.showThird + " showing third")
     if (num=== 3  ) {this.showFourth =true }
+    if (num===4) (this.showFifth = true)
     
   }
 
