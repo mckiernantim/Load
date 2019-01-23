@@ -17,11 +17,16 @@ export class PostService {
     
     createPost(post:Post):Observable<any>{
       // grab user info 
+
+      console.log(post)
       console.log(localStorage.getItem("user"))
       let token = JSON.parse(localStorage.getItem("user"));
+      console.log(token)
       post.id = token.id;
+      post.email = token.email;
+      post.username = token.username;
       
-      console.log(post)
+      
       
       return this.http.post('http://localhost:3000/users/post', post)
   }

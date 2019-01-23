@@ -9,14 +9,16 @@ const config = require('../config/database')
 const User = require('../models/user');
 class Post {
     
-   constructor(title= "", description= "", category= "", subCategory= "",item= "", deathdate="", specifics="" ){
-            this.title = titler
+   constructor(title= "", description= "", category= "", subCategory= "",item= "", deathdate="", specifics="", email="", username="" ){
+            this.title = title
             this.description = description;
             this.category = category;
             this.subCategory = subCategory;
             this.item = item;
             this.deathdate= deathdate;
             this.specifics=specifics;
+            this.username=username;
+            this.email=email;
         }
 }
 
@@ -33,7 +35,9 @@ router.post('/register', (req, res, next) => {
         username: req.body.username,
         password: req.body.password,
         title: req.body.title,
-        posts: [""]
+        posts: [""],
+        
+
     });
     User.addUser(newUser, (err, user)=>{
         if(err){
@@ -94,6 +98,54 @@ passport.authenticate('jwt', {session:false}),
     res.json({user: req.user});
 });
 
+// THIS MUST BE TESTED ONCE YOUR OFF THE PLANE
+router.get('/dashboard',
+(req, res, next) => {
+   User.find({})
+   .select('posts username email')  
+   .exec()
+   .then(docs => {
+       const response = {
+           
+           posts: docs.map(doc => {
+               return {
+                   username: doc.username,
+                   email: doc.email,
+                   _id: doc._id,
+                   posts: doc.posts,
+                    
+               }
+           })
+       }
+      
+       console.log(docs)
+       res.status(200).json(response);
+   })
+   .catch(err => {
+       console.log(err);
+       res.status(500).json({
+           error: err
+       })
+   })
+// 
+})
+router.get('/dashboard/:id',
+(req, res, next) => {
+   User.findById(req.params.id)
+   .exec(function(err, user){
+       if(err){
+           res.send('error has occured');
+       } else{
+           console.log(user)
+           res.json(user.posts);
+           
+       }
+   }
+)
+// 
+})
+   
+    
 
 
 router.post('/post', (req, res, next) => {
@@ -102,12 +154,15 @@ router.post('/post', (req, res, next) => {
     let post = {
        
         title: req.body.title,
+        username: req.body.username,
+        email: req.body.email,
         description: req.body.description,
         category: req.body.category,
         subCategory: req.body.subCategory,
         item: req.body.item,
         deathDate: req.body.deathDate,
         specifics: req.body.specifics,
+
 
     };
      
@@ -119,6 +174,7 @@ router.post('/post', (req, res, next) => {
     ).then(console.log("got response from server"))
     return res.json({success:true}).redirect("/dashboard")
     }),
+   
 
 
 
